@@ -1,15 +1,19 @@
 cask "aurora-glass" do
-  version "0.1.5"
-  sha256 "143a1b79251d9826fdb61c42500f2a46490340eb4548a05f0ed5f87825a2d43a"
+  # Written by cask.sh on every release: version and sha256 come from the
+  # live site's builds.txt, so the cask can only ever offer a build that is
+  # actually downloadable. Edit this file in the app's repo, never in the tap.
+  version "0.1.48"
+  sha256 "89ae99733717f4628d814f97ec93e56e1a1d53c3fee4bef3157c64729e51460c"
 
-  url "https://github.com/gourneau/aurora-glass/releases/download/v#{version}/AuroraGlass.dmg"
+  # Every published build stays on the site at its versioned name.
+  url "https://aurora.radiantmachines.com/AuroraGlass-#{version}.dmg"
   name "Aurora Glass"
-  desc "Live GPU fluid simulation painted across the menu bar"
-  homepage "https://aurora.radiantmachines.com"
+  desc "Living aurora for the menu bar, and a status light for AI agents"
+  homepage "https://aurora.radiantmachines.com/"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://aurora.radiantmachines.com/builds.txt"
+    regex(/AuroraGlass[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
   # `swift build` produces host-arch only, so this is an Apple silicon build.
@@ -19,12 +23,9 @@ cask "aurora-glass" do
   # behaviour, and Info.plist sets LSMinimumSystemVersion to match.
   depends_on macos: ">= :tahoe"
 
+  # The `aurora` CLI ships inside the bundle, where nothing puts it on PATH;
+  # the binary link is the main reason to install through the cask.
   app "AuroraGlass.app"
-
-  # The `aurora` CLI ships inside the bundle, where nothing puts it on PATH.
-  # Installing from the disk image therefore leaves `aurora busy` reporting
-  # "command not found" even though the binary is present. This symlink is the
-  # whole reason the cask is worth having over the DMG.
   binary "#{appdir}/AuroraGlass.app/Contents/MacOS/aurora"
 
   # It is a menu bar agent with no Dock icon, so an upgrade would otherwise
@@ -32,20 +33,19 @@ cask "aurora-glass" do
   uninstall quit: "com.gourneau.AuroraGlass"
 
   zap trash: [
-    "~/Library/Preferences/com.gourneau.AuroraGlass.plist",
     "~/Library/Application Support/AuroraGlass",
+    "~/Library/Preferences/com.gourneau.AuroraGlass.plist",
   ]
 
   caveats <<~EOS
-    Aurora Glass has no Dock icon. Look for the sparkles in your menu bar.
+    Aurora Glass has no Dock icon. Look for its two arcs in your menu bar.
 
     One setting decides whether you see anything at all:
 
       System Settings -> Menu Bar -> turn OFF "Show menu bar background"
 
-    That makes the bar transparent so the aurora shows through, with your own
-    menu bar text drawn on top. With it on, the bar stays opaque and hides the
-    effect entirely. Check that Accessibility -> Display -> Reduce Transparency
-    is off too.
+    To have your Claude Code agents drive it:
+
+      aurora hooks --install
   EOS
 end

@@ -21,7 +21,7 @@ cask "aurora-glass" do
   depends_on arch: :arm64
   # The app draws through the menu bar's transparency, which is macOS 26
   # behaviour, and Info.plist sets LSMinimumSystemVersion to match.
-  depends_on macos: ">= :tahoe"
+  depends_on macos: :tahoe
 
   # The `aurora` CLI ships inside the bundle, where nothing puts it on PATH;
   # the binary link is the main reason to install through the cask.

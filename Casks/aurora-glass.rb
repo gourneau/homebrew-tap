@@ -2,8 +2,8 @@ cask "aurora-glass" do
   # Written by cask.sh on every release: version and sha256 come from the
   # live site's builds.txt, so the cask can only ever offer a build that is
   # actually downloadable. Edit this file in the app's repo, never in the tap.
-  version "0.1.165"
-  sha256 "a7bad54676b19fd8fd892d222a3ac95e9444c2ac5476db505889d6bd76a08bbe"
+  version "0.1.166"
+  sha256 "85feee8073c602fe436bd8ea975e7f7565f242513c0d6e8916eed59e128267e6"
 
   # Every published build stays on the site at its versioned name.
   url "https://aurora.radiantmachines.com/AuroraGlass-#{version}.dmg"

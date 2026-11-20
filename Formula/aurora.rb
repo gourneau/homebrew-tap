@@ -3,10 +3,10 @@ class Aurora < Formula
   # the archive it attached to that release. Edit this file in the app's repo,
   # never in the tap.
   desc "Command for Aurora Glass: lets coding agents and scripts set the menu bar aurora"
-  homepage "https://auroraglass.app/help.html#helper"
-  url "https://github.com/gourneau/aurora-glass/releases/download/v0.1.182/aurora-macos-0.1.182.zip"
-  version "0.1.182"
-  sha256 "a830fd09b9d864a07f7242d117d5ef072bd05623651d24542555fb3fb55118e8"
+  homepage "https://auroraglass.app/helper.html"
+  url "https://github.com/gourneau/aurora-glass/releases/download/v0.1.183/aurora-macos-0.1.183.zip"
+  version "0.1.183"
+  sha256 "fe8f4db12fb23cf38922c027534e484054c3621cb1f841813cce76ab4147af96"
 
   # The same binary that ships inside the direct download of Aurora Glass:
   # signed with Developer ID and covered by that build's notarization.
